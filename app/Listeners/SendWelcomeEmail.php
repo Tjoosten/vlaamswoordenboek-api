@@ -26,7 +26,6 @@ class SendWelcomeEmail
     public function handle(UserCreated $event)
     {
         $event->user->email_verified_at = Carbon::now()->toDateTimeString();
-
         $event->user->save();
     }
 }

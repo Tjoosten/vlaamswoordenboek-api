@@ -11,12 +11,6 @@ use Illuminate\Validation\ValidationException;
 
 class Accounts
 {
-    /**
-     * Get list of paginated users.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return array
-     */
     public function getUsers(Request $request): array
     {
         $users = User::filter($request)->paginate($request->get('per_page', 20));
@@ -27,7 +21,7 @@ class Accounts
     /**
      * Get a user by ID.
      *
-     * @param  int  $id
+     * @param int $id
      * @return array
      *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
@@ -63,12 +57,6 @@ class Accounts
     }
 
     /**
-     * Update a user by ID.
-     *
-     * @param  int  $id
-     * @param  array  $attrs
-     * @return array
-     *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -77,7 +65,7 @@ class Accounts
         $user = User::findOrFail($id);
         $user->fill($attrs);
 
-        if (!$user->isValidFor('UPDATE')) {
+        if (! $user->isValidFor('UPDATE')) {
             throw new ValidationException($user->validator());
         }
 
@@ -90,14 +78,9 @@ class Accounts
     }
 
     /**
-     * Delete a user by ID.
-     *
-     * @param  int  $id
-     * @return bool
-     *
      * @throws \Illuminate\Database\Eloquent\ModelNotFoundException
      */
-    public function deleteUserById(int $id): bool
+    public function deleteUserById(int|string $id): bool
     {
         $user = User::findOrFail($id);
 

@@ -10,9 +10,6 @@ trait QueryFilterable
 {
     /**
      * Scope a query for query builder.
-     *
-     * @param  \Illuminate\Database\Eloquent\Builder  $query
-     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeFilter(Builder $query, Request $request): Builder
     {

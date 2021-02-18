@@ -9,15 +9,11 @@ use App\Transformers\UserTransformer;
 class Auth
 {
     /**
-     * Authenticate a user by emailand password
-     *
-     * @param  string  $email
-     * @param  string  $password
-     * @return array
+     * Authenticate a user by email and password
      */
     public function authenticateByEmailAndPassword(string $email, string $password): array
     {
-        if (!$token = app('auth')->attempt(compact('email', 'password'))) {
+        if (! $token = app('auth')->attempt(compact('email', 'password'))) {
             throw new UnauthorizedException();
         }
 

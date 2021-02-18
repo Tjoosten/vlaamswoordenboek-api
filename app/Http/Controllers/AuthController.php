@@ -10,11 +10,8 @@ use Illuminate\Http\Response;
 
 class AuthController extends Controller
 {
-    /**
-     * Controller constructor.
-     *
-     * @param  \App\Auth  $auth
-     */
+    private Auth $auth;
+
     public function __construct(Auth $auth)
     {
         $this->auth = $auth;
@@ -22,9 +19,6 @@ class AuthController extends Controller
 
     /**
      * Get a JWT via given credentials.
-     *
-     * @param  Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request): JsonResponse
     {
@@ -38,32 +32,22 @@ class AuthController extends Controller
 
     /**
      * Get the authenticated User.
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function show(): JsonResponse
     {
-        $user = $this->auth->getAuthenticatedUser();
-
-        return response()->json($user, Response::HTTP_OK);
+        return response()->json($this->auth->getAuthenticatedUser(), Response::HTTP_OK);
     }
 
     /**
      * Refresh a token.
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function update(): JsonResponse
     {
-        $token = $this->auth->refreshAuthenticationToken();
-
-        return response()->json($token, Response::HTTP_OK);
+        return response()->json($this->auth->refreshAuthenticationToken(), Response::HTTP_OK);
     }
 
     /**
      * Log the user out (Invalidate the token).
-     *
-     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(): JsonResponse
     {

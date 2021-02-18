@@ -4,16 +4,11 @@ namespace App\Traits;
 
 trait AttributeHashable
 {
-    /**
-     * Boot method for the trait.
-     *
-     * @return void
-     */
     public static function bootAttributeHashable(): void
     {
-        static::saving(function ($model) {
+        static::saving(function ($model): void {
             foreach ($model->hashable as $attribute) {
-                if (!$model->isDirty($attribute)) {
+                if (! $model->isDirty($attribute)) {
                     continue;
                 }
 

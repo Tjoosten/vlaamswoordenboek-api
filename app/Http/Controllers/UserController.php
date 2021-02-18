@@ -9,22 +9,11 @@ use Illuminate\Http\Response;
 
 class UserController extends Controller
 {
-    /**
-     * Controller constructor.
-     *
-     * @param  \App\Accounts  $accounts
-     */
     public function __construct(Accounts $accounts)
     {
         $this->accounts = $accounts;
     }
 
-    /**
-     * Get all the users.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
-     */
     public function index(Request $request): JsonResponse
     {
         $users = $this->accounts->getUsers($request);

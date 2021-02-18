@@ -13,10 +13,6 @@ trait ExceptionRenderable
 {
     /**
      * Response the exception in JSON.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  Throwable                 $exception
-     * @return \Illuminate\Http\JsonResponse
      */
     private function renderJson(Request $request, Throwable $exception): JsonResponse
     {
@@ -30,9 +26,6 @@ trait ExceptionRenderable
 
     /**
      * Check if the exception is renderable with JSON
-     *
-     * @param  Throwable  $exception
-     * @return bool
      */
     private function checkIfJsonRenderable(Throwable $exception): bool
     {
@@ -41,9 +34,6 @@ trait ExceptionRenderable
 
     /**
      * Get status code from the error body.
-     *
-     * @param  array  $error
-     * @return int
      */
     private function getStatusCodeFromError(array $error): int
     {
@@ -54,13 +44,10 @@ trait ExceptionRenderable
 
     /**
      * Get headers from the exception.
-     *
-     * @param  Throwable  $exception
-     * @return array
      */
     private function getHeadersFromException(Throwable $exception): array
     {
-        if (!method_exists($exception, 'getHeaders')) {
+        if (! method_exists($exception, 'getHeaders')) {
             return [];
         }
 
