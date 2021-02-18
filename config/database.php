@@ -55,6 +55,22 @@ return [
             'timezone' => env('DB_TIMEZONE', '+00:00'),
         ],
 
+        'mysql_dictionary' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_DICTIONARY', '127.0.0.1'),
+            'port' => env('DB_PORT_DICTIONARY', 3306),
+            'database' => env('DB_DATABASE_DICTIONARY', 'forge_dictionary'),
+            'username' => env('DB_USERNAME_DICTIONARY', 'forge_dictionary'),
+            'password' => env('DB_PASSWORD_DICTIONARY', ''),
+            'unix_socket' => env('DB_SOCKET_DICTIONARY', ''),
+            'charset' => env('DB_CHARSET_DICTIONARY', 'utf8mb4'),
+            'collation' => env('DB_COLLATION_DICTIONARY', 'utf8mb4_unicode_ci'),
+            'prefix' => env('DB_PREFIX_DICTIONARY', ''),
+            'strict' => env('DB_STRICT_MODE_DICTIONARY', true),
+            'engine' => env('DB_ENGINE_DICTIONARY', null),
+            'timezone' => env('DB_TIMEZONE_DICTIONARY', '+00:00'),
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'host' => env('DB_HOST', '127.0.0.1'),
